@@ -22,38 +22,20 @@ namespace MvcMovie.Controllers
 
         // GET: Movie
         // Muestra tabla con listado de películas incluidas en la DB.
-        // Filtra listado por nombre o género de la película      
-        public async Task<IActionResult> Index(string movieGenre, string searchString)
+        
+            // Filtrar listado por nombre o género de la película      
+        public async Task<IActionResult> Index(string searchString)
         {
-            // Se utiliza LINQ para conseguir la lista de Generos.
-            IQueryable<string> genreQuery = from m in _context.MovieModel
-                                            orderby m.Genre
-                                            select m.Genre;
-
-            // Consulta LINQ que lista registros de películas para la tabla.
+            // Consulta LINQ
             var movies = from m in _context.MovieModel select m;
-
             // If the searchString parameter contains a string,
             // the movies query is modified to filter on the value of the search string
             if (!String.IsNullOrEmpty(searchString))
             {
                 movies = movies.Where(s => s.Title!.Contains(searchString));
             }
-            // If the movieGenre parameter contains a movie Genre,
-            // the movies query is modified to filter on the value of the search movieGenre
-            if (!string.IsNullOrEmpty(movieGenre))
-            {
-                movies = movies.Where(x => x.Genre == movieGenre);
-            }
 
-            // Se generan los datos para enviar al ViewModel
-            var movieGenreVM = new MovieGenreViewModel
-            {
-                Genres = new SelectList(await genreQuery.Distinct().ToListAsync()),
-                Movies = await movies.ToListAsync()
-            };
-
-            return View(movieGenreVM);
+            return View(await movies.ToListAsync());
         }
 
 
