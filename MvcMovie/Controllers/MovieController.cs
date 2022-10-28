@@ -58,11 +58,6 @@ namespace MvcMovie.Controllers
 
 
 
-
-
-
-
-
         // GET: Movie/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -80,6 +75,10 @@ namespace MvcMovie.Controllers
 
             return View(movieModel);
         }
+
+
+
+
 
         // GET: Movie/Create
         public IActionResult Create()

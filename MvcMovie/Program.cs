@@ -10,10 +10,12 @@ namespace MvcMovie
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            // Registro del Context
-            builder.Services.AddDbContext<MvcMovieContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? 
-                throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
+            // Registro del Context --> Sustituido por DesignTimeContextFactory.cs
+            //builder.Services.AddDbContext<MvcMovieContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? 
+            //    throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
