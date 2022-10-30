@@ -8,7 +8,6 @@ namespace MvcMovie.Services.Repository
         // Se declara el contexto
         private readonly MvcMovieContext _context;
 
-
         //Constructor
         public EFMovieRepository()
         {
