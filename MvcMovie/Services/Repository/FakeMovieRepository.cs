@@ -62,10 +62,10 @@ namespace MvcMovie.Services.Repository
             return await Task.Run(() => _movies);
         }
 
-        public async Task<IQueryable<string>> GetGenreList()
+        public IQueryable<string> GetGenreList()
         {
-            return  (IQueryable<string>) await Task.Run(() => _movies
-            .OrderBy(x => x.Genre).Select(x => x.Genre).Distinct());
+            return  (IQueryable<string>) _movies
+                .OrderBy(x => x.Genre).Select(x => x.Genre).Distinct();
         }
 
 
