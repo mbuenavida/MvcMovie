@@ -15,5 +15,12 @@ namespace MvcMovie.Services.Repository
         public Task DeleteById(int id);
 
         public Task Add(MovieModel movie);
+
+
+
+        public Task<List<MovieModel>> GetAllFilterable(string movieGenre, string searchString);
+        public IQueryable<string> GetGenreList();
+
+
     }
 }

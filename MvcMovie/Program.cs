@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
 using MvcMovie.Models;
+using MvcMovie.Services.Repository;
 
 namespace MvcMovie
 {
@@ -19,6 +20,10 @@ namespace MvcMovie
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+
+            // Service for repositories Interfaces
+            builder.Services.AddScoped<IMovieRepository, EFMovieRepository>();
+         
 
             var app = builder.Build();
 

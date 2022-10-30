@@ -7,9 +7,13 @@ namespace MvcMovie.Models
     {
         public static void Initialize(IServiceProvider serviceProvider)
         {
-            using (var context = new MvcMovieContext(
-                serviceProvider.GetRequiredService<
-                    DbContextOptions<MvcMovieContext>>()))
+            //using (var context = new MvcMovieContext(
+            //serviceProvider.GetRequiredService<
+            //DbContextOptions<MvcMovieContext>>()))
+
+            //string[] args = { "serviceProvider.GetRequiredService()" };
+            string[] args = { "" };
+            using (MvcMovieContext context = new DesignTimeContextFactory().CreateDbContext(args))    
             {
                 // Look for any movies. If there are any movies
                 // in the database, the seed initializer returns
