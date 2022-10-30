@@ -47,30 +47,20 @@ namespace MvcMovie.Controllers
         }
 
 
+        // GET: Movie/Details/5
+        // Muestra detalles de una Movie.
+        public async Task<IActionResult> Details(int id)
+        {   
+            var movie = await _context.GetById(id);
+            if (movie == null)
+            {
+                return NotFound();
+            }
 
-        //// GET: Movie/Details/5
-        //public async Task<IActionResult> Details(int? id)
-        //{
-        //    if (id == null || _context.MovieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    var movieModel = await _context.MovieModel
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (movieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    return View(movieModel);
-        //}
-
-
-
-
-
-        //// GET: Movie/Create
+            return View(movie);
+        }
+        // Añadir nueva Movie a la DB
+        // GET: Movie/Create
         //public IActionResult Create()
         //{
         //    return View();
@@ -85,12 +75,12 @@ namespace MvcMovie.Controllers
         //{
         //    if (ModelState.IsValid)
         //    {
-        //        _context.Add(movieModel);
-        //        await _context.SaveChangesAsync();
+        //        await _context.Add(movieModel);       
         //        return RedirectToAction(nameof(Index));
         //    }
         //    return View(movieModel);
         //}
+
 
         //// GET: Movie/Edit/5
         //public async Task<IActionResult> Edit(int? id)
@@ -175,7 +165,7 @@ namespace MvcMovie.Controllers
         //    {
         //        _context.MovieModel.Remove(movieModel);
         //    }
-            
+
         //    await _context.SaveChangesAsync();
         //    return RedirectToAction(nameof(Index));
         //}
