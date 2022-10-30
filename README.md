@@ -1,5 +1,9 @@
 # MvcMovie
 Aplicación desarrollada con Learn Microsoft. ASP.NET Core MVC y se le añaden los repositorios y el proyecto para test.
+## Modelo
+
+## Controlador
+
 ## Migraciones
 
 ## Filtrado por Título y Género
@@ -11,3 +15,8 @@ Aplicación desarrollada con Learn Microsoft. ASP.NET Core MVC y se le añaden l
 ## Repositorios
 
 ## Proyecto MSTest de puebas.
+Sólo 1 prueba pendiente de desarrollar más en clase.
+
+## Estado Desarrollo:
+En este punto, la aplicación sólo cuenta con un controlador y un modelo, sobre los que se han montdo la estructura inicial del proyecto.
+Los únicos métodos del Controlador que funcionan son el Index y Details, queda pendiente completar el CRUD.
