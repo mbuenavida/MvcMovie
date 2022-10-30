@@ -1,6 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using MvcMovie.Data;
+using MvcMovie.Models;
+using MvcMovie.Services.Repository;
+
 namespace MvcMovie
 {
     public class Program
@@ -8,13 +11,29 @@ namespace MvcMovie
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
-            builder.Services.AddDbContext<MvcMovieContext>(options =>
-                options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
+            // Registro del Context --> Sustituido por DesignTimeContextFactory.cs
+            //builder.Services.AddDbContext<MvcMovieContext>(options =>
+            //    options.UseSqlServer(builder.Configuration.GetConnectionString("MvcMovieContext") ?? 
+            //    throw new InvalidOperationException("Connection string 'MvcMovieContext' not found.")));
+
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            // Service for repositories Interfaces
+            builder.Services.AddScoped<IMovieRepository, EFMovieRepository>();
+         
+
             var app = builder.Build();
+
+            // Seed the database
+            using (var scope = app.Services.CreateScope())
+            {
+                var services = scope.ServiceProvider;
+
+                SeedData.Initialize(services);
+            }
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
