@@ -1,17 +1,17 @@
 # MvcMovie
-Aplicación desarrollada con la documentación de Learn Microsoft. ASP.NET Core MVC.
+<b>Curso IFCD38 - IFCD38 - DESARROLLADOR WEB Y CLOUD MICROSOFT.</b>
+<p>Aplicación desarrollada con la documentación de Learn Microsoft. ASP.NET Core MVC.</p>
 
-Get started with ASP.NET Core MVC 
-https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-6.0&tabs=visual-studio
-
-Las pruebas de conceptos se realizan en otro proyecto : MvcMovieInClass.
+<p>Get started with ASP.NET Core MVC</p>
+<p>https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-6.0&tabs=visual-studio</p>
+<p>Las pruebas de conceptos se realizan en otro proyecto : MvcMovieInClass.</p>
 
 ## Documentación
-01 - Get started with ASP.NET Core MVC.docx
-02 - Repository_Cambiar context de Program a Repositorio en ASP.NET Core MVC
+<p>01 - Get started with ASP.NET Core MVC.docx</p>
+<p>02 - Repository_Cambiar context de Program a Repositorio en ASP.NET Core MVC</p>
 
 ## Proyecto Web App
-Plantilla --> ASP.NET Core Web App (Model-View-Controller)
+<p>Plantilla --> ASP.NET Core Web App (Model-View-Controller)</p>
 
 ### Scaffolding
 
@@ -30,10 +30,10 @@ Plantilla --> ASP.NET Core Web App (Model-View-Controller)
 ### Validaciones de formularios
 
 ### Repositrios
-Este punto no se detalla en el manual, se siguen las instrucciones del profesor.
+<p>Este punto no se detalla en el manual, se siguen las instrucciones del profesor.</p>
 
 ## Proyecto Test
-Plantilla --> Proyecto de prueba de MSTest.
+<p>Plantilla --> Proyecto de prueba de MSTest.</p>
 
 ## Subir a Github
-Se crea una nueva Acción de workflow --> .Net - Build and test a .NET Core proyect.
+<p>Se crea una nueva Acción de workflow --> .Net - Build and test a .NET Core proyect.</p>
