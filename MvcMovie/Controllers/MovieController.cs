@@ -59,116 +59,104 @@ namespace MvcMovie.Controllers
 
             return View(movie);
         }
-        // Añadir nueva Movie a la DB
+
+
         // GET: Movie/Create
-        //public IActionResult Create()
-        //{
-        //    return View();
-        //}
+        // Añadir nueva Movie a la DB
+        public IActionResult Create()
+        {
+            return View();
+        }
 
-        //// POST: Movie/Create
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieModel movieModel)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        await _context.Add(movieModel);       
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(movieModel);
-        //}
+        // POST: Movie/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieModel movieModel)
+        {
+            if (ModelState.IsValid)
+            {
+                await _context.Add(movieModel);
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movieModel);
+        }
 
 
-        //// GET: Movie/Edit/5
-        //public async Task<IActionResult> Edit(int? id)
-        //{
-        //    if (id == null || _context.MovieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: Movie/Edit/5
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null || _context == null)
+            {
+                return NotFound();
+            }
 
-        //    var movieModel = await _context.MovieModel.FindAsync(id);
-        //    if (movieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(movieModel);
-        //}
+            var movieModel = await _context.GetById((int) id);
 
-        //// POST: Movie/Edit/5
-        //// To protect from overposting attacks, enable the specific properties you want to bind to.
-        //// For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieModel movieModel)
-        //{
-        //    if (id != movieModel.Id)
-        //    {
-        //        return NotFound();
-        //    }
+            if (movieModel == null)
+            {
+                return NotFound();
+            }
+            return View(movieModel);
+        }
 
-        //    if (ModelState.IsValid)
-        //    {
-        //        try
-        //        {
-        //            _context.Update(movieModel);
-        //            await _context.SaveChangesAsync();
-        //        }
-        //        catch (DbUpdateConcurrencyException)
-        //        {
-        //            if (!MovieModelExists(movieModel.Id))
-        //            {
-        //                return NotFound();
-        //            }
-        //            else
-        //            {
-        //                throw;
-        //            }
-        //        }
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    return View(movieModel);
-        //}
+        // POST: Movie/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,ReleaseDate,Genre,Price,Rating")] MovieModel movieModel)
+        {
+            if (id != movieModel.Id)
+            {
+                return NotFound();
+            }
 
-        //// GET: Movie/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null || _context.MovieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
+            if (ModelState.IsValid)
+            {          
+                await _context.Update(movieModel);         
+                return RedirectToAction(nameof(Index));
+            }
+            return View(movieModel);
+        }
 
-        //    var movieModel = await _context.MovieModel
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (movieModel == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: Movie/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null || _context == null)
+            {
+                return NotFound();
+            }
 
-        //    return View(movieModel);
-        //}
+            var movieModel = await _context.GetById((int)id);
 
-        //// POST: Movie/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    if (_context.MovieModel == null)
-        //    {
-        //        return Problem("Entity set 'MvcMovieContext.MovieModel'  is null.");
-        //    }
-        //    var movieModel = await _context.MovieModel.FindAsync(id);
-        //    if (movieModel != null)
-        //    {
-        //        _context.MovieModel.Remove(movieModel);
-        //    }
+            if (movieModel == null)
+            {
+                return NotFound();
+            }
 
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+            return View(movieModel);
+        }
+
+        // POST: Movie/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            if (_context == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.MovieModel'  is null.");
+            }
+            var movieModel = await _context.GetById(id);
+
+            if (movieModel != null)
+            {
+                await _context.DeleteById(id);
+            }
+
+            return RedirectToAction(nameof(Index));
+        }
 
         //private bool MovieModelExists(int id)
         //{

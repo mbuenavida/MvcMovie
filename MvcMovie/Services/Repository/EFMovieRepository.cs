@@ -2,6 +2,7 @@
 using MvcMovie.Data;
 using MvcMovie.Models;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace MvcMovie.Services.Repository
 {
@@ -17,11 +18,13 @@ namespace MvcMovie.Services.Repository
             // Generador de contexto
             _movieRepository = new DesignTimeContextFactory().CreateDbContext(args);
         }
+
         // Lista todas las películas
         public async Task<List<MovieModel>> GetAll()
         {
             return await _movieRepository.MovieModel.ToListAsync();
         }
+        
         // Lista Movies con filtro por género y/o título
         public async Task<List<MovieModel>> GetAllFilterable(string movieGenre, string searchString)
         {
@@ -42,6 +45,7 @@ namespace MvcMovie.Services.Repository
             }
             return await movies.ToListAsync();
         }
+        
         // Listado para el combo para filtar el género
         public IQueryable<string> GetGenreList()
         {
@@ -55,6 +59,7 @@ namespace MvcMovie.Services.Repository
             }
             return null;
         }
+       
         // Devuelve datos de una Movie por si Id.
         public async Task<MovieModel> GetById(int id)
         {
@@ -62,34 +67,38 @@ namespace MvcMovie.Services.Repository
             return movies;
         }
 
-
         // Añadir Movie a la DB
-        //public Task Add(MovieModel movie)
-        //{
-        //    if (_movieRepository.MovieModel is not null)
-        //    {
-        //        _movieRepository.MovieModel.Add(movie);
-        //        _movieRepository.SaveChanges();
-
-        //        return "Ok";
-        //    }
-        //    return null;
-        //}
-
-
-
-
-        public Task Add(MovieModel movie)
+        public async Task Add(MovieModel movie)
         {
-            throw new NotImplementedException();
+            if (_movieRepository.MovieModel is not null)
+            {
+                _movieRepository.Add(movie);
+                await _movieRepository.SaveChangesAsync();              
+            }           
         }
-        public Task Update(MovieModel movie)
+
+        // Actualizar Regsitro
+        public async Task Update(MovieModel movie)
         {
-            throw new NotImplementedException();
+            if (_movieRepository.MovieModel is not null)
+            {
+                _movieRepository.Update(movie);
+                await _movieRepository.SaveChangesAsync();
+            }
         }
-        public Task DeleteById(int id)
+        
+        // Eliminar Registro
+        public async Task DeleteById(int id)
         {
-            throw new NotImplementedException();
+            if (_movieRepository.MovieModel is not null)
+            {
+                var movie = await GetById(id);
+                if (movie != null)
+                {
+                    _movieRepository.MovieModel.Remove(movie);
+                    _movieRepository.SaveChanges();
+                }
+            }
         }
     }
 }
