@@ -4,7 +4,7 @@
 
 <p>Get started with ASP.NET Core MVC</p>
 <p>https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?view=aspnetcore-6.0&tabs=visual-studio</p>
-<p>Las pruebas de conceptos se realizan en otro proyecto : MvcMovieInClass.</p>
+<p>Las pruebas de conceptos se realizan en otro proyecto : <b>MvcMovieInClass</b>.</p>
 
 ## Documentación
 <p>01 - Get started with ASP.NET Core MVC.docx</p>
