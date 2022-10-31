@@ -32,6 +32,11 @@
 ### Repositrios
 <p>Este punto no se detalla en el manual, se siguen las instrucciones del profesor.</p>
 
+### CRUD
+- Campo de tipo Date no conserva la fecha al abrir editar
+- Precio, no acepta comas, revisar tipo de dato. En el modelo se declara como decimal(18,2)
+
+
 ## Proyecto Test
 <p>Plantilla --> Proyecto de prueba de MSTest.</p>
 
