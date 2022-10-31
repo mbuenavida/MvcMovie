@@ -6,6 +6,10 @@ https://learn.microsoft.com/en-us/aspnet/core/tutorials/first-mvc-app/start-mvc?
 
 Las pruebas de conceptos se realizan en otro proyecto : MvcMovieInClass.
 
+## Documentación
+01 - Get started with ASP.NET Core MVC.docx
+02 - Repository_Cambiar context de Program a Repositorio en ASP.NET Core MVC
+
 ## Proyecto Web App
 Plantilla --> ASP.NET Core Web App (Model-View-Controller)
 
