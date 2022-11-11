@@ -24,6 +24,13 @@ namespace MvcMovie.Controllers
             _logger = logger;   
         }
 
+        // Constructor para Controlador de proyecto Test
+        // Se eliminará cunado se implemente el Logger en el proyecto test.
+        public MovieController(IMovieRepository context)
+        {
+            _context = context;
+        }
+
         // GET: Movie
         // Muestra tabla con listado de películas incluidas en la DB.
         // Filtra listado por nombre o género de la película      
