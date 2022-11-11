@@ -15,25 +15,26 @@ namespace MvcMovie.Controllers
     {
         // Se declara variable privada que recoge el objeto MvcMovieContext
         private readonly IMovieRepository _context;
-        // Contructor de la clase, al que se le inyecta el contexto
-        public MovieController(IMovieRepository context)
+        // Instacia del Registro
+        private readonly ILogger<MovieController> _logger;
+        // Contructor de la clase, al que se le inyecta el contexto y el resgistro
+        public MovieController(IMovieRepository context, ILogger<MovieController> logger)
         {
             _context = context;
+            _logger = logger;   
         }
 
         // GET: Movie
         // Muestra tabla con listado de películas incluidas en la DB.
         // Filtra listado por nombre o género de la película      
         public async Task<IActionResult> Index(string movieGenre, string searchString)
-        {
-            // Se utiliza LINQ para conseguir la lista de Generos.
-            //IQueryable<string> genreQuery = await _context.GetGenreList();
+        {         
+            // Registro
+            _logger.LogInformation("Info Log");
+            _logger.LogWarning("Warninig Log");
+            _logger.LogError("Error Log");
+            _logger.LogCritical("Critical Log");
 
-            //IQueryable<string>genreQuery = from m in _movieRepository.MovieModel
-            //orderby m.Genre
-            //select m.Genre;
-
-      
 
             // Se generan los datos para enviar al ViewModel
             var movieGenreVM = new MovieGenreViewModel
@@ -65,6 +66,8 @@ namespace MvcMovie.Controllers
         // Añadir nueva Movie a la DB
         public IActionResult Create()
         {
+            SelectList Genres = new SelectList(_context.GetGenreList());
+  
             return View();
         }
 
